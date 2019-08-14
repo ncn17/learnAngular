@@ -3,13 +3,18 @@
       <div class="col-xs-12">
         <h2>Mes appareils</h2>
         <ul class="list-group">
-          <app-appareil  *ngFor="let appareil of appareils"
+          <app-appareil  *ngFor="let appareil of appareilData(); let i = index"
                          [appareilName]="appareil.name"
-                         [appareilStatus]="appareil.status"></app-appareil>
+                         [appareilStatus]="appareil.status"
+                         [isAuth]="getAuthState()"
+                         [index]="i"></app-appareil>
         </ul>
         <button class="btn btn-success"
-                [disabled]="!isAuth"
-                (click)="onAllumer()">Tout allumer</button>
+                [disabled]="!getAuthState()"
+                (click)="switchAllOn()">Tout allumer</button>
+        <button class="second btn btn-danger"
+                [disabled]="!getAuthState()"
+                (click)="switchAllOff()">Tout éteindre</button>
       </div>
     </div>
   </div>
